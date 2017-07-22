@@ -48,6 +48,8 @@ class Board:
 
     def move_Ship(self, ctup, characters):
 
+        move = True;
+
 # Can only move a ship from a square if there is a ship there
         if ctup in self.squares:
 
@@ -61,9 +63,9 @@ class Board:
             while characters != "":
 
                 step = characters[0];
-                characters = characters[1:]
+                characters = characters[1:];
 
-                print step
+                # print step;
 
                 if step == "M":
                     x += Ship.xmove[o];
@@ -76,8 +78,9 @@ class Board:
                     o = Ship.turnright[o];
 
                 else:
-                    # If we got here there was a problem;
+                    # If we got here there was a problem; abort entire move procedure
                     print "Invalid Move Command";
+                    move = False;
 
             x %= self.size;
             y %= self.size;
@@ -85,11 +88,18 @@ class Board:
             newctup = "("+str(x)+","+str(y)+")";
 
 # Can only move a ship if the destination has no ship; if there is a ship at the destination cancel the move
-# In which case create a new ship with the new coordinates and orientation and pop the old ship
-            if newctup in self.squares:
-                print "Invalid Sequence to Move Ship";
 # Can only move a ship that has not sunk! But a sunken ship could prevent another ship from moving to its location
-            elif self.squares[ctup].afloat():
+
+            if newctup in self.squares:
+                print "Invalid Destination";
+                move = False;
+            if self.squares[ctup].afloat() == False:
+                print "Attempted to Move Sunken Ship";
+                move = False;
+
+# If our ship is afloat, won't end up on another ship and the move command is valid, move the ship.
+# In which case create a new ship with the new coordinates and orientation and pop the old ship
+            if move:
                 self.squares[newctup]=Ship(x,y,o);
                 self.squares.pop(ctup);
 
