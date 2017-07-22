@@ -37,7 +37,7 @@ def calculate(intext, board):
         ctup = result.group(1);
         characters = result.group(2);
 
-    # i.e. if we have a move command
+    # i.e. if we have a move command rather than a sink command
         if characters != None:
             board.move_Ship(ctup, characters);
         else:

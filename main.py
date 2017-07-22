@@ -1,10 +1,11 @@
 # James Graham
 
+import sys
 from process import *
 
 # Open the input file and read the instructions
 
-inputs = open("input.txt","r");
+inputs = open(sys.argv[1],"r");
 
 sea = initialize(inputs)
 
@@ -14,4 +15,4 @@ inputs.close()
 
 # Open the output file and print the final state of the board.
 
-write("output.txt",sea);
+write(sys.argv[2],sea);

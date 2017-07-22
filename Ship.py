@@ -8,7 +8,7 @@ class Ship:
     turnright = {"N":"E","E":"S","S":"W","W":"N"};
     xmove = {"N":0,"E":1,"S":0,"W":-1};
     ymove = {"N":1,"E":0,"S":-1,"W":0};
-    
+
     def __init__(self, xpos, ypos, orientation):
         self.__xcoord = xpos;
         self.__ycoord = ypos;
@@ -18,14 +18,8 @@ class Ship:
     def getx(self):
         return self.__xcoord;
 
-    def setx(self, xpos):
-        self.__xcoord = xpos;
-
     def gety(self):
         return self.__ycoord;
-
-    def sety(self, ypos):
-        self.__ycoord = ypos;
 
     def getdirection(self):
         return self.__direction;
